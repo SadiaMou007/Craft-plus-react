@@ -1,0 +1,29 @@
+.header {
+  height: 80px;
+  width: 100%;
+  background-color: #1c2b35;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header img {
+  height: 40px;
+  width: 140px;
+}
+.headerC {
+  display: flex;
+  width: 80%;
+  justify-content: flex-end;
+  align-items: center;
+}
+.headerC a {
+  text-decoration: none;
+  font-size: 17px;
+  color: #ffffff;
+  margin-left: 36px;
+}
+.headerC a:hover {
+  border-bottom: 3px solid sandybrown;
+  border-radius: 3px;
+  opacity: 90%;
+}
