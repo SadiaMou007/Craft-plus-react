@@ -14,7 +14,6 @@ const Shop = () => {
     //2. add to cart event listener function
     const [cart,setCart]=useState([])
     function handleAddToCart(product){
-      console.log(product);
       const newCart=[...cart,product]
       setCart(newCart)
   }
@@ -27,9 +26,7 @@ const Shop = () => {
 
     }
     </div>
-    <div className='shop-order'><Cart></Cart>
-    <h4>Order Summery</h4>
-    <p>Selected Item:{cart.length}</p>
+    <div className='shop-order'><Cart cart={cart}></Cart>
     </div>
     </div>
   )

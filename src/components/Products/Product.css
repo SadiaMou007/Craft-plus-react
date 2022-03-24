@@ -17,7 +17,7 @@
 .product-container img {
   width: 286px;
   height: 286px;
-  transition: all 1.5s ease-in-out;
+  transition: all 1s ease-in-out;
   border-radius: 8px;
 }
 .product-name {
@@ -35,7 +35,7 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .product-container img:hover {
-  transform: rotate(-90deg);
+  transform: rotate(-5deg);
 }
 .product-container p:hover {
   color: orangered;
