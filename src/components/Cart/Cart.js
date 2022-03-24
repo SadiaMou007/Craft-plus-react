@@ -1,26 +1,40 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleRight, faDeleteLeft } from '@fortawesome/free-solid-svg-icons';
-import React from 'react'
-import './Cart.css';
+import {
+  faArrowCircleRight,
+  faDeleteLeft,
+} from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+import "./Cart.css";
 
 const Cart = (props) => {
-  let total=0;
-  
-  for(const product of props.cart){
-       total=total+product.price;
-  }
-  console.log(props);
-  return (
-    <div className='cart-container'><h4 className='cart-title'>Order Summery</h4>
-    <p>Selected Item: {props.cart.length}</p>
-    <p>Total Price: ${total}</p>
-    <p>Total Shipping: $</p>
-    <p>Tax: $</p>
-    <h5>Grand Total: $</h5>
-    <button>Clear Cart <FontAwesomeIcon className="icon" icon={faDeleteLeft}/></button>
-    <button>Review order <FontAwesomeIcon className="icon" icon={faArrowCircleRight} /></button>
-    </div>
-  )
-}
+  let total = 0;
+  let shipping = 0;
+  let quantity = 0;
 
-export default Cart
+  for (const product of props.cart) {
+    quantity += product.quantity;
+    total += product.price * product.quantity;
+    shipping += product.shipping;
+  }
+  const tax = (total * 0.1).toFixed(2);
+  const GrandTotal = (total + shipping + parseFloat(tax)).toFixed(2);
+  return (
+    <div className="cart-container">
+      <h4 className="cart-title">Order Summery</h4>
+      <p>Selected Item: {quantity}</p>
+      <p>Total Price: ${total}</p>
+      <p>Total Shipping: ${shipping}</p>
+      <p>Tax: ${tax}</p>
+      <h5>Grand Total: ${GrandTotal}</h5>
+      <button className="btn1">
+        Clear Cart <FontAwesomeIcon className="icon" icon={faDeleteLeft} />
+      </button>
+      <button className="btn2">
+        Review order{" "}
+        <FontAwesomeIcon className="icon" icon={faArrowCircleRight} />
+      </button>
+    </div>
+  );
+};
+
+export default Cart;

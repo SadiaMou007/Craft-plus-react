@@ -11,6 +11,7 @@ const Product = (props) => {
       <div className="product-detail">
         <p className="product-name">{name}</p>
         <p className="product-price">Price: ${price}</p>
+
         <p>
           <small>Rating: {ratings} <FontAwesomeIcon icon={faStar} /></small>
         </p>
