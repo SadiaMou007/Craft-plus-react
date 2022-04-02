@@ -29,10 +29,7 @@ const Cart = (props) => {
       <button className="btn1">
         Clear Cart <FontAwesomeIcon className="icon" icon={faDeleteLeft} />
       </button>
-      <button className="btn2">
-        Review order{" "}
-        <FontAwesomeIcon className="icon" icon={faArrowCircleRight} />
-      </button>
+      {props.children}
     </div>
   );
 };

@@ -1,29 +1,34 @@
+import { faArrowCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useProducts from "../../Hooks/useProducts";
 import { addToDb, getStoredCard } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../Products/Product";
 import "./Shop.css";
 const Shop = () => {
-  //1. for shop product
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch("products.json")
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
-  }, []);
-
-  //2. add to cart event listener function
+  const [products, setProducts] = useProducts(); //use custom hook to load data
   const [cart, setCart] = useState([]);
 
-  // function handleAddToCart(product) {
-  //   const newCart = [...cart, product];
-  //   setCart(newCart);
-  //   /// for local storage///
-  //   addToDb(product.id);
-  // }
+  ///for local storage get previous products quantity ///
+  useEffect(() => {
+    const storedData = getStoredCard();
+    const savedCart = [];
+    for (const id in storedData) {
+      //local storage(id:value)
+      const previousProduct = products?.find((product) => product.id === id);
+      if (previousProduct) {
+        const quantity = storedData[id];
+        previousProduct.quantity = quantity;
+        savedCart.push(previousProduct);
+      }
+    }
+    setCart(savedCart);
+  }, [products]);
 
+  //2. add to cart event listener function
   const handleAddToCart = (selectedProduct) => {
-    console.log(selectedProduct);
     let newCart = [];
     const exists = cart.find((product) => product.id === selectedProduct.id);
     if (!exists) {
@@ -38,22 +43,6 @@ const Shop = () => {
     addToDb(selectedProduct.id);
   };
 
-  ///for local storage display ///
-  useEffect(() => {
-    const storedData = getStoredCard();
-    const savedCart = [];
-    for (const id in storedData) {
-      const previousProduct = products?.find((product) => product.id === id);
-      if (previousProduct) {
-        console.log(previousProduct);
-        const quantity = storedData[id];
-        previousProduct.quantity = quantity;
-        savedCart.push(previousProduct);
-      }
-    }
-    setCart(savedCart);
-  }, [products]);
-
   return (
     <div className="shop-container">
       <div className="shop-product">
@@ -67,7 +56,14 @@ const Shop = () => {
       </div>
 
       <div className="shop-order">
-        <Cart cart={cart}></Cart>
+        <Cart cart={cart}>
+          <Link to={"/order"}>
+            <button>
+              Review Order{" "}
+              <FontAwesomeIcon className="icon" icon={faArrowCircleRight} />
+            </button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );
