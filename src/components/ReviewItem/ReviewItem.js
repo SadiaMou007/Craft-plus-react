@@ -5,7 +5,7 @@ import "./ReviewItem.css";
 const ReviewItem = (props) => {
   const { handleRemoveItem, product } = props;
 
-  const { img, name, price, shipping } = product;
+  const { img, name, price, shipping, quantity } = product;
   return (
     <div className="dd">
       <div className="d">
@@ -17,6 +17,7 @@ const ReviewItem = (props) => {
             </h4>
             <h4>${price}</h4>
             <h4>Shipping: {shipping}</h4>
+            <h5>Quantity: {quantity}</h5>
           </div>
         </div>
 

@@ -1,10 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowCircleRight,
-  faDeleteLeft,
-} from "@fortawesome/free-solid-svg-icons";
+import { faDeleteLeft } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import "./Cart.css";
+import { addToDb, deleteShoppingCart } from "../../utilities/fakedb";
 
 const Cart = (props) => {
   let total = 0;
