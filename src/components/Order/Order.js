@@ -18,7 +18,6 @@ const Order = () => {
     setCart(rest);
     removeFromDb(product.id);
   };
-
   return (
     <div className="shop-container">
       <div className="pp">
@@ -33,9 +32,9 @@ const Order = () => {
 
       <div className="shop-order">
         <Cart cart={cart}>
-          <Link to={"/about"}>
+          <Link to={"/shipment"}>
             <button>
-              See about
+              Proceed Shipment
               <FontAwesomeIcon className="icon" icon={faArrowCircleRight} />
             </button>
           </Link>

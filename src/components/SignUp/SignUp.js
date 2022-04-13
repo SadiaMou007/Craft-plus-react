@@ -8,12 +8,10 @@ const SignUp = () => {
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
   const [cpassword, setCpassword] = useState({ value: "", error: "" });
-  console.log(password.value, cpassword.value);
   const navigate = useNavigate();
 
   const [createUserWithEmailAndPassword, user, error] =
     useCreateUserWithEmailAndPassword(auth);
-  console.log(error, user);
   //
   const handleEmailBlur = (e) => {
     if (/\S+@\S+\.\S+/.test(e)) {

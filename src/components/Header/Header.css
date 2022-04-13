@@ -27,3 +27,8 @@
   border-radius: 3px;
   opacity: 90%;
 }
+.logout-btn {
+  margin: 5px;
+  padding: 5px;
+  border: none;
+}
